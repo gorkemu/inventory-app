@@ -1,1 +1,3 @@
-# inventory-app
+# Description
+
+Basic Inventory app using Express

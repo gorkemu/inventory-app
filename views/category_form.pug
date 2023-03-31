@@ -4,10 +4,10 @@ block content
   h1 #{title}
 
   form(method='POST' action='')
-    div.form-group
+    div.form-group.mb-3
       label(for='name') Name:
       input#name.form-control(type='text' required='true' name='name' value=(undefined===category ? '' : category.name))
-    div.form-group  
+    div.form-group.mb-3
       label(for='description') Description:
       input#description.form-control(type='text' required='true' name='description' value=(undefined===category ? '' : category.description))
     button.btn.btn-primary(type='submit') Submit

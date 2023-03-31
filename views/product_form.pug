@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h1=title
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='category') Category:
+      select#category.form-control(type='select' placeholder='Select category' name='category' required='true')
+        - category_list.sort(function(a, b) {let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+        for category in category_list
+          option(value=category._id, selected=(selected_category==category._id.toString() ? 'selected' : false) ) #{category.name}
+
+    div.form-group
+      label(for='name') Name:
+      input#name.form-control(type='text' name='name' required='true' value=(undefined===product ? '' : product.name))
+    div.form-group
+      label(for='description') Description:
+      input#description.form-control(type='text' name='description' required='true' value=(undefined===product ? '' : product.description))
+    div.form-group
+      label(for='price') Price ($):
+      input#price.form-control(type='number' name='price' required='true' value=(undefined===product ? '' : product.price))
+    div.form-group
+      label(for='number_in_stock') Number in stock:
+      input#number_in_stock.form-control(type='number' name='number_in_stock' required='true' value=(undefined===product ? '' : product.number_in_stock))
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

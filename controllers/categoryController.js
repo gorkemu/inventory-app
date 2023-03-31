@@ -7,7 +7,7 @@ exports.index = async (req, res) => {
     const category_count = await Category.countDocuments({});
     const product_count = await Product.countDocuments({});
     res.render("index", {
-      title: "Inventory App Home",
+      title: "Groceries in minutes",
       data: {
         category_count,
         product_count,

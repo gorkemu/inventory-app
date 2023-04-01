@@ -5,28 +5,35 @@ block content
 
   form(method='POST' action='' enctype='multipart/form-data')
     div.form-group.mb-3
-      label(for='category') Category:
+      label.form-label(for='category') Category:
       select#category.form-control(type='select' placeholder='Select category' name='category' required='true')
         - category_list.sort(function(a, b) {let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
         for category in category_list
           option(value=category._id selected=(selected_category==category._id.toString() ? 'selected' : false) ) #{category.name}
     div.form-group.mb-3
-      label(for='name') Name:
+      label.form-label(for='name') Name:
       input#name.form-control(type='text' name='name' required='true' value=(undefined===product ? '' : product.name))
     div.form-group.mb-3
       label(for='description') Description:
       input#description.form-control(type='text' name='description' required='true' value=(undefined===product ? '' : product.description))
     div.form-group.mb-3
-      label(for='price') Price ($):
+      label.form-label(for='price') Price ($):
       input#price.form-control(type='number' name='price' required='true' value=(undefined===product ? '' : product.price))
     div.form-group.mb-3
-      label(for='number_in_stock') Number in stock:
+      label.form-label(for='number_in_stock') Number in stock:
       input#number_in_stock.form-control(type='number' name='number_in_stock' required='true' value=(undefined===product ? '' : product.number_in_stock))
     div.form-group.mb-3
-      label(for='image') Image:
+      label.form-label(for='image') Image:
       input#image.form-control(type='file' name='uploaded_file')
-    button.btn.btn-primary(type='submit') Submit
+    if product.image
+      div.form-check.mb-3
+        label(for='keep_image' class='form-check-label') Keep the previous image  
+        input#keep_image.form-check-input(type='checkbox' name='keep_image' selected='true' checked='true')
+    button.btn.btn-primary.mb-3(type='submit') Submit
 
+  if product.image 
+    img(src="/uploads/" + product.image alt=product.name class="product-image mb-1")
+    p Previously saved image
   if errors
     ul
       for error in errors

@@ -98,7 +98,6 @@ exports.product_create_post = [
     // Data from form is valid.
     try {
       await product.save();
-      console.log(req.file.filename);
       // Successful: redirect to new product.
       res.redirect(product.url);
     } catch (err) {
@@ -157,6 +156,7 @@ exports.product_update_get = async (req, res, next) => {
       category_list: results[1],
       selected_category: results[0].category._id,
       product: results[0],
+      image: results[0].image,
     });
   } catch (err) {
     return next(err);
@@ -186,16 +186,29 @@ exports.product_update_post = [
     try {
       // Extract the validation errors from a request.
       const errors = validationResult(req);
-
+      let product;
       // Create a BookInstance object with escaped and trimmed data and current id.
-      const product = new Product({
-        category: req.body.category,
-        name: req.body.name,
-        description: req.body.description,
-        price: req.body.price,
-        number_in_stock: req.body.number_in_stock,
-        _id: req.params.id,
-      });
+      if (req.file) {
+        product = new Product({
+          category: req.body.category,
+          name: req.body.name,
+          description: req.body.description,
+          price: req.body.price,
+          number_in_stock: req.body.number_in_stock,
+          _id: req.params.id,
+          image: undefined === req.file ? "" : req.file.filename,
+        });
+      } else {
+        product = new Product({
+          category: req.body.category,
+          name: req.body.name,
+          description: req.body.description,
+          price: req.body.price,
+          number_in_stock: req.body.number_in_stock,
+          _id: req.params.id,
+          image: req.body.image,
+        });
+      }
 
       if (!errors.isEmpty()) {
         // There are errors. Render form again with sanitized values and error messages.

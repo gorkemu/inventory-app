@@ -3,9 +3,14 @@ extends layout
 block content
   h1= title
 
-  ul
+  ul(class='list')
     each product in product_list
-      li
-        a(href=product.url) #{product.name} 
+      li(class='list-item')
+        a(href=product.url) 
+          .block
+            if product.image
+              img(src="/uploads/" + product.image alt=product.name class="product-image")
+            p #{product.name}
+
     else
       li There are no products in this inventory.

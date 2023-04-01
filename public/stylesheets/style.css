@@ -1,5 +1,25 @@
+body {
+  background-color: #fbfbfb;
+}
 .sidebar-nav {
   margin-top: 20px;
   padding: 0;
   list-style: none;
+}
+
+.list {
+  display: grid;  
+  grid-template-columns: repeat(3, 1fr);
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.product-image {
+  height: 150px;
 }

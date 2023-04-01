@@ -5,7 +5,7 @@ const { body, validationResult } = require("express-validator");
 // Display list of all Products.
 exports.product_list = async function (req, res, next) {
   try {
-    const list_products = await Product.find().populate("category").exec();
+    const list_products = await Product.find().exec();
     res.render("product_list", {
       title: "All Products",
       product_list: list_products,
@@ -49,6 +49,7 @@ exports.product_create_get = async (req, res, next) => {
 };
 
 // Handle Product create on POST.
+
 exports.product_create_post = [
   // Validate and sanitize fields.
   body("category", "Category must be specified")
@@ -73,6 +74,7 @@ exports.product_create_post = [
       description: req.body.description,
       price: req.body.price,
       number_in_stock: req.body.number_in_stock,
+      image: undefined === req.file ? "" : req.file.filename,
     });
 
     if (!errors.isEmpty()) {
@@ -96,6 +98,7 @@ exports.product_create_post = [
     // Data from form is valid.
     try {
       await product.save();
+      console.log(req.file.filename);
       // Successful: redirect to new product.
       res.redirect(product.url);
     } catch (err) {

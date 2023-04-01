@@ -1,5 +1,15 @@
 const express = require("express");
 const router = express.Router();
+const path = require("path");
+const multer = require("multer");
+const storage = multer.diskStorage({
+  destination: "public/uploads",
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({ storage: storage });
 
 // Require controller modules.
 const category_controller = require("../controllers/categoryController");
@@ -40,7 +50,11 @@ router.get("/categories", category_controller.category_list);
 router.get("/product/create", product_controller.product_create_get);
 
 // POST request for creating product.
-router.post("/product/create", product_controller.product_create_post);
+router.post(
+  "/product/create",
+  upload.single("uploaded_file"),
+  product_controller.product_create_post
+);
 
 // GET request to delete product.
 router.get("/product/:id/delete", product_controller.product_delete_get);

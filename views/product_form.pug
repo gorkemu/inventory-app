@@ -3,14 +3,13 @@ extends layout
 block content
   h1=title
 
-  form(method='POST' action='')
+  form(method='POST' action='' enctype='multipart/form-data')
     div.form-group.mb-3
       label(for='category') Category:
       select#category.form-control(type='select' placeholder='Select category' name='category' required='true')
         - category_list.sort(function(a, b) {let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
         for category in category_list
-          option(value=category._id, selected=(selected_category==category._id.toString() ? 'selected' : false) ) #{category.name}
-
+          option(value=category._id selected=(selected_category==category._id.toString() ? 'selected' : false) ) #{category.name}
     div.form-group.mb-3
       label(for='name') Name:
       input#name.form-control(type='text' name='name' required='true' value=(undefined===product ? '' : product.name))
@@ -23,6 +22,9 @@ block content
     div.form-group.mb-3
       label(for='number_in_stock') Number in stock:
       input#number_in_stock.form-control(type='number' name='number_in_stock' required='true' value=(undefined===product ? '' : product.number_in_stock))
+    div.form-group.mb-3
+      label(for='image') Image:
+      input#image.form-control(type='file' name='uploaded_file')
     button.btn.btn-primary(type='submit') Submit
 
   if errors

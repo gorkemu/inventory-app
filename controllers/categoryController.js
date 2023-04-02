@@ -81,6 +81,7 @@ exports.category_create_post = [
     const category = new Category({
       name: req.body.name,
       description: req.body.description,
+      image: undefined === req.file ? "" : req.file.filename,
     });
 
     if (!errors.isEmpty()) {

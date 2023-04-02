@@ -7,7 +7,7 @@ exports.product_list = async function (req, res, next) {
   try {
     const list_products = await Product.find().exec();
     res.render("product_list", {
-      title: "All Products",
+      title: "Products",
       product_list: list_products,
     });
   } catch (err) {
@@ -40,7 +40,7 @@ exports.product_create_get = async (req, res, next) => {
   try {
     const categories = await Category.find({}, "name").exec();
     res.render("product_form", {
-      title: "Create Product",
+      title: "Add Product",
       category_list: categories,
     });
   } catch (err) {
@@ -187,7 +187,7 @@ exports.product_update_post = [
       // Extract the validation errors from a request.
       const errors = validationResult(req);
       let product;
-      // Create a BookInstance object with escaped and trimmed data and current id.
+      // Create a Product object with escaped and trimmed data and current id.
       if (req.file) {
         product = new Product({
           category: req.body.category,

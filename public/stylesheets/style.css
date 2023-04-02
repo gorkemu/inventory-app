@@ -82,14 +82,16 @@ button a {
 
 .category-card-image-container,
 .product-card-image-container,
-.product-form-image-container {
+.product-form-image-container,
+.category-form-image-container {
   width: 120px;
   height: 120px;
 }
 
 .category-card-image,
 .product-card-image,
-.product-form-image {
+.product-form-image,
+.category-form-image {
   height: 120px;
   width: 120px;
   max-height: 200px;

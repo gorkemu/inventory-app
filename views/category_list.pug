@@ -1,12 +1,15 @@
 extends layout
 
 block content
-  h1= title
-
-  div(class='categories-container')
-    each category in category_list
-      div(class='category-item')
-        a(href=category.url class='category-link') #{category.name}
-
-    else
-      li There are no categories.
+  section
+    h1= title
+    div(class='category-cards-container')
+      each category in category_list
+        article(class='category-card')
+          a(href=category.url class='category-card-link')
+            div(class='category-card-image-container')
+              if category.image
+                img(src="/uploads/" + category.image alt=category.name class="category-card-image")
+          p(class='category-card-name') #{category.name}
+      else
+        li There are no categories.

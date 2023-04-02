@@ -4,7 +4,10 @@ block content
   div(class='hero')
   br
   section
-    h1 Categories
+    div(class='list-header')
+      h1 Categories 
+      span(class='span-add-item') 
+        a(href='/catalog/category/create' class='') Add category
     div(class='category-cards-container')
       each category in category_list
         article(class='category-card')
@@ -15,7 +18,10 @@ block content
           p(class='category-card-name') #{category.name}
   br
   section
-    h1 Products
+    div(class='list-header')
+      h1 Products 
+      span(class='span-add-item') 
+        a(href='/catalog/category/create' class='') Add product
     div(class='product-cards-container')
       each product in product_list
         article(class='product-card')

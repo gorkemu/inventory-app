@@ -12,7 +12,7 @@ block content
         p #[strong Stock:] #{product.number_in_stock}
         p #[strong Overview:] #{product.description}
       div(class='product-detail-buttons')
-        button.m-1
+        button
           a(href=product.url+'/delete') Delete Product
-        button.m-1
+        button
           a(href=product.url+'/update') Update Product

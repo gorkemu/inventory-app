@@ -1,18 +1,59 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
 body {
-  background-color: #fbfbfb;
+  width: 100vw;
   height: 100vh;
 }
 
-.sidebar {
-  background-color: #5d3ebc;
-  min-height: 100vh;
+body {
+  background-color: #fbfbfb;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
-.sidebar-nav {
-  margin-top: 20px;
-  padding: 0;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #5d3ebc;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.navbar-nav-left,
+.navbar-nav-right {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 10px;
   list-style: none;
+  height: 100%;
+  gap: 2px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  transition: all 0.2s ease;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.nav-item:hover {
+  background-color: #4a2e9b;
+}
+
+.nav-link {
+  text-decoration: none;
   color: white;
+  font-size: 18px;
+  padding: 8px 16px;
+  transition: all 0.2s ease;
 }
 
 main {
@@ -29,14 +70,7 @@ section {
   background-size: cover;
   background-position: center;
   height: 300px;
-  margin-top: 10px;
   border-radius: 4px;
-}
-
-.hero h1 {
-  font-size: 30px;
-  font-weight: 600;
-  margin-top: 76px;
 }
 
 h1 {
@@ -46,6 +80,21 @@ h1 {
 button a {
   color: white;
   text-decoration: none;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.span-add-item {
+  display: none;
+  font-size: 14px;
+  color: #5d3ebc;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .category-cards-container,
@@ -149,6 +198,33 @@ form {
   font-size: 14px;
 }
 
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.form-check-input {
+  margin-right: 8px;
+}
+
 input {
   font-size: 12px;
 }
@@ -158,9 +234,9 @@ button {
   color: white;
   border: none;
   border-radius: 4px;
+  margin: 8px 8px 8px 0;
   padding: 8px 16px;
   font-size: 14px;
-  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -173,11 +249,25 @@ button:hover {
   form {
     width: 100%;
   }
-}
+  
+  .navbar {
+    padding: 0;
+  }
 
-@media (max-width: 576px) {
-  .sidebar {
-      min-height: min-content;
-    }
+  .nav-item {
+    padding: 0;
+  }
 
+  .nav-link {
+    font-size: 16px;
+  }
+
+  .nav-item-right {
+    display: none;
+  }
+
+  .span-add-item {
+    font-size: 12px;
+    display: block;
+  }
 }

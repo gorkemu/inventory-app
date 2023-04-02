@@ -5,22 +5,22 @@ block content
     h1 #{title}
 
     form(method='POST' action='' enctype='multipart/form-data')
-      div.form-group.mb-2
+      div.form-group
         label.form-label(for='name') Name:
         input#name.form-control(type='text' required='true' name='name' value=(undefined===category ? '' : category.name))
-      div.form-group.mb-2
+      div.form-group
         label.form-label(for='description') Description:
         input#description.form-control(type='text' required='true' name='description' value=(undefined===category ? '' : category.description))
-      div.form-group.mb-2
+      div.form-group
         label.form-label(for='image') Image:
         input#image.form-control(type='file' name='uploaded_file')
       if category && category.image
-        div.form-check.mb-2
+        div.form-check
           label(for='categoy_keep_image' class='form-check-label') Keep previous image  
           input#category_keep_image.form-check-input(type='checkbox' name='category_keep_image' selected='true' checked='true')
         div(class='category-form-image-container')
           img(src="/uploads/" + category.image alt=category.name class="category-form-image mb-1")
-      button.mt-3(type='submit') Submit
+      button(type='submit') Submit
 
     if errors
       ul

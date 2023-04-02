@@ -2,7 +2,10 @@ extends layout
 
 block content
   section
-    h1= title
+    div(class='list-header')
+      h1= title 
+      span(class='span-add-item') 
+        a(href='/catalog/category/create' class='') Add category
     div(class='category-cards-container')
       each category in category_list
         article(class='category-card')

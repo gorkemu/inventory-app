@@ -2,7 +2,10 @@ extends layout
 
 block content
   section
-    h1= title
+    div(class='list-header')
+      h1= title 
+      span(class='span-add-item')
+        a(href='/catalog/product/create' class='') Add product
     div(class='product-cards-container')
       each product in product_list
         article(class='product-card')

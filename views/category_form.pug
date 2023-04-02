@@ -16,7 +16,7 @@ block content
         input#image.form-control(type='file' name='uploaded_file')
       if category && category.image
         div.form-check.mb-2
-          label(for='categoy_keep_image' class='form-check-label') Keep the previous image  
+          label(for='categoy_keep_image' class='form-check-label') Keep previous image  
           input#category_keep_image.form-check-input(type='checkbox' name='category_keep_image' selected='true' checked='true')
         div(class='category-form-image-container')
           img(src="/uploads/" + category.image alt=category.name class="category-form-image mb-1")

@@ -1,10 +1,11 @@
 extends layout
 
 block content
-  h1= title
-  p At your doors in minutes.
+  section
+    h1= title
+    p At your doors in minutes.
 
-  if error
-    p Error getting dynamic content.
-  else
-    p !{data.product_count} products in !{data.category_count} categories.
+    if error
+      p Error getting dynamic content.
+    else
+      p !{data.product_count} products in !{data.category_count} categories.

@@ -1,11 +1,28 @@
 extends layout
 
 block content
+  div(class='hero')
+  br
   section
-    h1= title
-    p At your doors in minutes.
-
-    if error
-      p Error getting dynamic content.
-    else
-      p !{data.product_count} products in !{data.category_count} categories.
+    h1 Categories
+    div(class='category-cards-container')
+      each category in category_list
+        article(class='category-card')
+          a(href=category.url class='category-card-link')
+            div(class='category-card-image-container')
+              if category.image
+                img(src="/uploads/" + category.image alt=category.name class="category-card-image")
+          p(class='category-card-name') #{category.name}
+  br
+  section
+    h1 Products
+    div(class='product-cards-container')
+      each product in product_list
+        article(class='product-card')
+          a(href=product.url class='product-card-link')
+            div(class='product-card-image-container')
+              if product.image
+                img(src="/uploads/" + product.image alt=product.name class="product-card-image")
+          span(class='my-1 product-card-price') $#{product.price}
+          p(class='product-card-name') #{product.name}
+  br

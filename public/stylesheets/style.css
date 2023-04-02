@@ -43,6 +43,11 @@ h1 {
   font-size: 14px;
 }
 
+a {
+  color: white;
+  text-decoration: none;
+}
+
 .category-cards-container,
 .product-cards-container {
   display: flex;
@@ -144,6 +149,22 @@ form {
 
 input {
   font-size: 12px;
+}
+
+button {
+  background-color: #5d3ebc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background-color: #4a2e9b;
 }
 
 @media (max-width: 768px) {

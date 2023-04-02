@@ -63,7 +63,7 @@ exports.category_detail = async (req, res, next) => {
 
 // Display category create form on GET.
 exports.category_create_get = async (req, res, next) => {
-  await res.render("category_form", { title: "Create Category" });
+  await res.render("category_form", { title: "Add Category" });
 };
 
 // Handle category create on POST.

@@ -1,15 +1,18 @@
 extends layout
 
 block content
-  section
-    h1 #{product.name}
-
-    p #{product.description}
-    p #[strong Price:] #{product.price}
-    p #[strong Stock:] #{product.number_in_stock}
-
-    hr
-    p
-      a(href=product.url+'/delete') Delete Product
-    p
-      a(href=product.url+'/update') Update Product
+  section(class='product-detail-container')
+    div(class='product-detail-image-container')
+      if product.image
+        img(src="/uploads/" + product.image alt=product.name class="product-detail-image")
+    div(class='product-detail-info-container')  
+      div(class='product-detail-info')
+        h2(class='product-detail-heading')= product.name
+        p(class='product-detail-price') $#{product.price}
+        p #[strong Stock:] #{product.number_in_stock}
+        p #[strong Overview:] #{product.description}
+      div(class='product-detail-buttons')
+        p
+          a(href=product.url+'/delete') Delete Product
+        p
+          a(href=product.url+'/update') Update Product

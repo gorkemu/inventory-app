@@ -1,15 +1,15 @@
 extends layout
 
 block content
+  section
+    h1 #{product.name}
 
-  h1 #{product.name}
+    p #{product.description}
+    p #[strong Price:] #{product.price}
+    p #[strong Stock:] #{product.number_in_stock}
 
-  p #{product.description}
-  p #[strong Price:] #{product.price}
-  p #[strong Stock:] #{product.number_in_stock}
-
-  hr
-  p
-    a(href=product.url+'/delete') Delete Product
-  p
-    a(href=product.url+'/update') Update Product
+    hr
+    p
+      a(href=product.url+'/delete') Delete Product
+    p
+      a(href=product.url+'/update') Update Product

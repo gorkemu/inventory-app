@@ -4,20 +4,18 @@ const { body, validationResult } = require("express-validator");
 
 exports.index = async (req, res) => {
   try {
-    const category_count = await Category.countDocuments({});
-    const product_count = await Product.countDocuments({});
+    const list_categories = await Category.find()
+      .sort({ name: 1 })
+      .populate("name")
+      .exec();
+    const list_products = await Product.find().exec();
     res.render("index", {
       title: "Groceries in minutes",
-      data: {
-        category_count,
-        product_count,
-      },
+      category_list: list_categories,
+      product_list: list_products,
     });
   } catch (err) {
-    res.render("index", {
-      title: "Inventory App Home",
-      error: err,
-    });
+    return next(err);
   }
 };
 

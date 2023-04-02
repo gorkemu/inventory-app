@@ -1,16 +1,17 @@
 extends layout
 
 block content
-  h1= title
+  section
+    h1= title
+    div(class='product-cards-container')
+      each product in product_list
+        article(class='product-card')
+          a(href=product.url class='product-card-link')
+            div(class='product-card-image-container')
+              if product.image
+                img(src="/uploads/" + product.image alt=product.name class="product-card-image")
+          span(class='my-1 product-card-price') $#{product.price}
+          p(class='product-card-name') #{product.name}
 
-  ul(class='list')
-    each product in product_list
-      li(class='list-item')
-        a(href=product.url) 
-          .block
-            if product.image
-              img(src="/uploads/" + product.image alt=product.name class="product-image")
-            p #{product.name}
-
-    else
-      li There are no products in this inventory.
+      else
+        li There are no products in this inventory.

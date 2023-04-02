@@ -1,22 +1,23 @@
 extends layout
 
 block content
-  h1 #{title}
+  section
+    h1 #{title}
 
-  p #[strong Description:] #{category.description}
+    p #[strong Description:] #{category.description}
 
-  div(style='margin-left:20px;margin-top:20px')
-    h4 Products
+    div(style='margin-left:20px;margin-top:20px')
+      h4 Products
 
-    each product in products
+      each product in products
+        hr
+        p 
+          a(href=product.url) #{product.name}
+
+      else
+        p There are no products in this category.
       hr
-      p 
-        a(href=product.url) #{product.name}
-
-    else
-      p There are no products in this category.
-    hr
-  p
-    a(href=category.url+'/delete') Delete Category
-  p
-    a(href=category.url+'/update') Update Category
+    p
+      a(href=category.url+'/delete') Delete Category
+    p
+      a(href=category.url+'/update') Update Category

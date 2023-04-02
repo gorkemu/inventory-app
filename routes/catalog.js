@@ -24,7 +24,11 @@ router.get("/", category_controller.index);
 router.get("/category/create", category_controller.category_create_get);
 
 // POST request for creating category.
-router.post("/category/create", category_controller.category_create_post);
+router.post(
+  "/category/create",
+  upload.single("uploaded_file"),
+  category_controller.category_create_post
+);
 
 // GET request to delete category.
 router.get("/category/:id/delete", category_controller.category_delete_get);
@@ -36,7 +40,11 @@ router.post("/category/:id/delete", category_controller.category_delete_post);
 router.get("/category/:id/update", category_controller.category_update_get);
 
 // POST request to update category.
-router.post("/category/:id/update", category_controller.category_update_post);
+router.post(
+  "/category/:id/update",
+  upload.single("uploaded_file"),
+  category_controller.category_update_post
+);
 
 // GET request for one category.
 router.get("/category/:id", category_controller.category_detail);

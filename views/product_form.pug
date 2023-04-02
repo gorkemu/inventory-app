@@ -30,12 +30,11 @@ block content
         div.form-check.mb-2
           label(for='keep_image' class='form-check-label') Keep the previous image  
           input#keep_image.form-check-input(type='checkbox' name='keep_image' selected='true' checked='true')
+        div(class='product-form-image-container')
+          img(src="/uploads/" + product.image alt=product.name class="product-form-image mb-1")
       button.btn.btn-primary.mt-3.mb-2(type='submit') Submit
 
-    if product && product.image 
-      div(class='product-form-image-container')
-        img(src="/uploads/" + product.image alt=product.name class="product-form-image mb-1")
-      p Previously saved image
+    
     if errors
       ul
         for error in errors

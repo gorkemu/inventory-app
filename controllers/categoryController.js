@@ -204,7 +204,7 @@ exports.category_update_post = [
 
       if (!errors.isEmpty()) {
         // There are errors. Render form again with sanitized values/error messages.
-        res.render("book_form", {
+        res.render("category_form", {
           title: "Update Category",
           category,
           errors: errors.array(),

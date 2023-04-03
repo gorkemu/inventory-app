@@ -4,9 +4,9 @@ block content
   section
     p #[strong Do you really want to delete #{product.name}?]
 
-    p #[strong Category: ]
+    p.mt-10 #[strong Category: ]
       a(href=product.category.url) #{product.category.name}
-    p #[strong Description: ] #{product.description}
+    p.mt-10 #[strong Description: ] #{product.description}
     
     form(method='POST' action='')
       div.form-group

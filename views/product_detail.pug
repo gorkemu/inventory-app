@@ -9,8 +9,8 @@ block content
       div.product-detail-info
         h2.product-detail-heading= product.name
         p.product-detail-price $#{product.price}
-        p #[strong Stock:] #{product.number_in_stock}
-        p #[strong Overview:] #{product.description}
+        p.mt-10 #[strong Stock:] #{product.number_in_stock}
+        p.mt-10 #[strong Overview:] #{product.description}
       div.product-detail-buttons
         button
           a(href=product.url+'/delete') Delete Product

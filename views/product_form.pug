@@ -19,7 +19,7 @@ block content
         input#description.form-control(type='text' name='description' required='true' value=(undefined===product ? '' : product.description))
       div.form-group
         label.form-label(for='price') Price ($):
-        input#price.form-control(type='number' name='price' required='true' value=(undefined===product ? '' : product.price))
+        input#price.form-control(type='text' name='price' required='true' value=(undefined===product ? '' : product.price))
       div.form-group
         label.form-label(for='number_in_stock') Number in stock:
         input#number_in_stock.form-control(type='number' name='number_in_stock' required='true' value=(undefined===product ? '' : product.number_in_stock))

@@ -25,7 +25,7 @@ block content
         input#number_in_stock.form-control(type='number' name='number_in_stock' required='true' value=(undefined===product ? '' : product.number_in_stock))
       div.form-group.mb-2
         label.form-label(for='image') Image:
-        input#image.form-control(type='file' name='uploaded_file')
+        input#image.form-control(type='file' name='product-image')
       if product && product.image  
         div.form-check.mb-2
           label(for='keep_image' class='form-check-label') Keep the previous image  

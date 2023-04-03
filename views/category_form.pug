@@ -13,7 +13,7 @@ block content
         input#description.form-control(type='text' required='true' name='description' value=(undefined===category ? '' : category.description))
       div.form-group
         label.form-label(for='image') Image:
-        input#image.form-control(type='file' name='uploaded_file')
+        input#image.form-control(type='file' name='category-image')
       if category && category.image
         div.form-check
           label(for='categoy_keep_image' class='form-check-label') Keep previous image  

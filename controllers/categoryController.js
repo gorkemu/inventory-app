@@ -194,13 +194,23 @@ exports.category_update_post = [
     try {
       // Extract the validation errors from a request.
       const errors = validationResult(req);
-
+      let category;
       // Create a Category object with escaped and trimmed data.
-      const category = new Category({
-        name: req.body.name,
-        description: req.body.description,
-        _id: req.params.id, //This is required, or a new ID will be assigned!
-      });
+      if (req.file) {
+        category = new Category({
+          name: req.body.name,
+          description: req.body.description,
+          _id: req.params.id, //This is required, or a new ID will be assigned!
+          image: undefined === req.file ? "" : req.file.filename,
+        });
+      } else {
+        category = new Category({
+          name: req.body.name,
+          description: req.body.description,
+          _id: req.params.id, //This is required, or a new ID will be assigned!
+          image: req.body.image,
+        });
+      }
 
       if (!errors.isEmpty()) {
         // There are errors. Render form again with sanitized values/error messages.

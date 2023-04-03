@@ -82,6 +82,10 @@ button a {
   text-decoration: none;
 }
 
+.mt-10 {
+  margin-top: 10px;
+}
+
 .list-header {
   display: flex;
   justify-content: space-between;
@@ -109,7 +113,6 @@ button a {
 .product-card {
   list-style-type: none;
   width: 160px;
-  height: 200px;
   padding: 8px 5px;
   border-radius: 4px;
   border: 1px solid #f3f0fe;
@@ -154,11 +157,14 @@ button a {
   color: #5d3ebc;
   font-weight: 600;
   font-size: 20px;
+  margin-top: 10px;
 }
 
+.category-card-name,
 .product-card-name {
   color: #191919;
   font-weight: 600;
+  margin-top: 10px;
 }
 
 .product-detail-container {

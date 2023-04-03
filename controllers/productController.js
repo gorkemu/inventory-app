@@ -1,6 +1,7 @@
 const Product = require("../models/product");
 const Category = require("../models/category");
 const { body, validationResult } = require("express-validator");
+const fs = require("fs");
 
 // Display list of all Products.
 exports.product_list = async function (req, res, next) {
@@ -128,9 +129,21 @@ exports.product_delete_get = async (req, res) => {
 };
 
 // Handle Product delete on POST.
-exports.product_delete_post = async (req, res) => {
+exports.product_delete_post = async (req, res, next) => {
   try {
+    const product = await Product.findById(req.params.id).exec();
+
     await Product.findByIdAndRemove(req.body.productid);
+
+    // Delete image from public/uploads
+    if (product.image) {
+      fs.unlink(`public/uploads/${product.image}`, (err) => {
+        if (err) {
+          return next(err);
+        }
+      });
+    }
+    // Success - go to author list
     res.redirect("/catalog/products");
   } catch (err) {
     return next(err);

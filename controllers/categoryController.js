@@ -1,5 +1,6 @@
 const Category = require("../models/category");
 const Product = require("../models/product");
+const fs = require("fs");
 const { body, validationResult } = require("express-validator");
 
 exports.index = async (req, res) => {
@@ -137,7 +138,7 @@ exports.category_delete_get = async (req, res) => {
 };
 
 // Handle category delete on POST.
-exports.category_delete_post = async (req, res) => {
+exports.category_delete_post = async (req, res, next) => {
   try {
     const results = await Promise.all([
       Category.findById(req.params.id).exec(),
@@ -153,6 +154,15 @@ exports.category_delete_post = async (req, res) => {
       });
     } else {
       await Category.findByIdAndRemove(req.body.categoryid);
+
+      // Delete image from public/uploads
+      if (category.image) {
+        fs.unlink(`public/uploads/${category.image}`, (err) => {
+          if (err) {
+            return next(err);
+          }
+        });
+      }
       res.redirect("/catalog/categories");
     }
   } catch (err) {

@@ -4,8 +4,6 @@ block content
   section
     p #[strong Do you really want to delete #{product.name}?]
 
-    div(style='margin-left:20px;margin-top:20px')
-
     p #[strong Category: ]
       a(href=product.category.url) #{product.category.name}
     p #[strong Description: ] #{product.description}

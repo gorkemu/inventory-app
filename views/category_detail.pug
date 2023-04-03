@@ -3,22 +3,22 @@ extends layout
 block content
   section
     h1 #{title}
-    div(class='product-cards-container')
+    div.product-cards-container
       each product in products
-        article(class='product-card')
-          a(href=product.url class='product-card-link')
-            div(class='product-card-image-container')
+        article.product-card
+          a.product-card-link(href=product.url)
+            div.product-card-image-container
               if product.image
-                img(src="/uploads/" + product.image alt=product.name class="product-card-image")
-          span(class='my-1 product-card-price') $#{product.price}
-          p(class='product-card-name') #{product.name}
+                img.product-card-image(src="/uploads/" + product.image alt=product.name)
+          span.product-card-price $#{product.price}
+          p.product-card-name #{product.name}
       
       else
         p There are no products in this category.
   br
   section
-    button.m-1
+    button
       a(href=category.url+'/delete') Delete Category
-    button.m-1
+    button
       a(href=category.url+'/update') Update Category
   br

@@ -5,11 +5,33 @@ const multer = require("multer");
 const storage = multer.diskStorage({
   destination: "public/uploads",
   filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
   },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 1000000 },
+  fileFilter: (req, file, cb) => {
+    checkFileType(file, cb);
+  },
+});
+
+function checkFileType(file, cb) {
+  const filetypes = /jpeg|jpg|png/;
+  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+  const mimetype = filetypes.test(file.mimetype);
+
+  if (mimetype && extname) {
+    return cb(null, true);
+  } else {
+    cb(null, false);
+    return cb(new Error("Only .png, .jpg, and .jpeg format allowed!"));
+  }
+}
 
 // Require controller modules.
 const category_controller = require("../controllers/categoryController");
@@ -26,7 +48,7 @@ router.get("/category/create", category_controller.category_create_get);
 // POST request for creating category.
 router.post(
   "/category/create",
-  upload.single("uploaded_file"),
+  upload.single("category-image"),
   category_controller.category_create_post
 );
 
@@ -42,7 +64,7 @@ router.get("/category/:id/update", category_controller.category_update_get);
 // POST request to update category.
 router.post(
   "/category/:id/update",
-  upload.single("uploaded_file"),
+  upload.single("category-image"),
   category_controller.category_update_post
 );
 
@@ -60,7 +82,7 @@ router.get("/product/create", product_controller.product_create_get);
 // POST request for creating product.
 router.post(
   "/product/create",
-  upload.single("uploaded_file"),
+  upload.single("product-image"),
   product_controller.product_create_post
 );
 
@@ -76,7 +98,7 @@ router.get("/product/:id/update", product_controller.product_update_get);
 // POST request to update product.
 router.post(
   "/product/:id/update",
-  upload.single("uploaded_file"),
+  upload.single("product-image"),
   product_controller.product_update_post
 );
 

@@ -156,7 +156,6 @@ exports.product_update_get = async (req, res, next) => {
       category_list: results[1],
       selected_category: results[0].category._id,
       product: results[0],
-      image: results[0].image,
     });
   } catch (err) {
     return next(err);

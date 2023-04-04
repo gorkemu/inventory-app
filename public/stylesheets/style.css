@@ -297,4 +297,10 @@ button:hover {
     width: 300px;
     height: 300px;
   }
+
+  .category-cards-container,
+  .product-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
 }

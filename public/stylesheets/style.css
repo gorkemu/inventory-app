@@ -276,4 +276,25 @@ button:hover {
     font-size: 12px;
     display: block;
   }
+
+  .product-detail-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .product-detail-info-container {
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+  }
+
+  .product-detail-image-container {
+    width: 300px;
+    height: 300px;
+  }
+
+  .product-detail-image {
+    width: 300px;
+    height: 300px;
+  }
 }
